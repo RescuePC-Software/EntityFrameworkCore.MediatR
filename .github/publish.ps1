@@ -1,4 +1,4 @@
-$csproj = Join-Path $PSScriptRoot "..\Source\RescuePC.Software.EntityFrameworkCore.Domain\RescuePC.Software.EntityFrameworkCore.Domain.csproj"
+$csproj = Join-Path $PSScriptRoot "..\Source\RescuePC.Software.EntityFrameworkCore.MediatR\RescuePC.Software.EntityFrameworkCore.MediatR.csproj"
 $xml = [xml](Get-Content $csproj)
 $version = $xml.Project.PropertyGroup.Version
 
