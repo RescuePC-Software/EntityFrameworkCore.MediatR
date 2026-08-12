@@ -38,15 +38,8 @@ if (-not $nupkg) {
 }
 
 Write-Host "Wypychanie paczki $($nupkg.Name) do GitHub Packages..." -ForegroundColor Cyan
-$token = $env:GITHUB_PACKAGES_TOKEN
-if (-not $token) {
-	Write-Error "Brak zmiennej środowiskowej GITHUB_PACKAGES_TOKEN."
-	exit 1
-}
-
 dotnet nuget push $nupkg.FullName `
-	--source "https://nuget.pkg.github.com/RescuePC-Software/index.json" `
-	--api-key $token `
+	--source "RescuePC-GitHub" `
 	--skip-duplicate
 if ($LASTEXITCODE -ne 0) {
 	Write-Error "Nie udało się wypchnąć paczki."
