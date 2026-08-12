@@ -23,29 +23,6 @@ if ($LASTEXITCODE -ne 0) {
 	exit 1
 }
 
-Write-Host "Budowanie paczki NuGet $version..." -ForegroundColor Cyan
-$artifacts = Join-Path $PSScriptRoot "..\artifacts"
-dotnet pack $csproj --configuration Release --output $artifacts /p:Version=$version
-if ($LASTEXITCODE -ne 0) {
-	Write-Error "Nie udało się zbudować paczki."
-	exit 1
-}
-
-$nupkg = Get-ChildItem $artifacts -Filter "*.nupkg" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-if (-not $nupkg) {
-	Write-Error "Nie znaleziono pliku .nupkg w $artifacts."
-	exit 1
-}
-
-Write-Host "Wypychanie paczki $($nupkg.Name) do GitHub Packages..." -ForegroundColor Cyan
-dotnet nuget push $nupkg.FullName `
-	--source "RescuePC-GitHub" `
-	--skip-duplicate
-if ($LASTEXITCODE -ne 0) {
-	Write-Error "Nie udało się wypchnąć paczki."
-	exit 1
-}
-
 Write-Host "Tworzenie taga $tag..." -ForegroundColor Cyan
 git tag $tag
 if ($LASTEXITCODE -ne 0) {
@@ -59,4 +36,4 @@ if ($LASTEXITCODE -ne 0) {
 	exit 1
 }
 
-Write-Host "Paczka $($nupkg.Name) została opublikowana, tag $tag wypchnięty." -ForegroundColor Green
+Write-Host "Tag $tag wypchnięty. GitHub Actions zbuduje i opublikuje paczkę NuGet." -ForegroundColor Green
