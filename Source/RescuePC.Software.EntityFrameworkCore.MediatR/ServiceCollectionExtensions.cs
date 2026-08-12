@@ -7,7 +7,6 @@ namespace RescuePC.Software.EntityFrameworkCore.MediatR;
 
 public static class ServiceCollectionExtensions
 {
-
     public static void AddMediatR<TUnitOfWork>(this IServiceCollection services, Assembly[] assemblies, IEnumerable<Type> pipelineBehaviors)
         where TUnitOfWork : class, IUnitOfWork
     {

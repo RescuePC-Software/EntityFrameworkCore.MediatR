@@ -8,5 +8,7 @@
   <Folder Name="/Source/">
     <Project Path="Source/RescuePC.Software.EntityFrameworkCore.MediatR/RescuePC.Software.EntityFrameworkCore.MediatR.csproj" />
   </Folder>
-  <Folder Name="/Tests/" />
+  <Folder Name="/Tests/">
+    <Project Path="Tests/RescuePC.Software.EntityFrameworkCore.MediatR.UnitTests/RescuePC.Software.EntityFrameworkCore.MediatR.UnitTests.csproj" />
+  </Folder>
 </Solution>
