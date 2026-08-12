@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/.github/">
+    <File Path=".github/publish.ps1" />
+  </Folder>
+  <Folder Name="/.github/workflows/">
+    <File Path=".github/workflows/publish.yml" />
+  </Folder>
+  <Folder Name="/Source/">
+    <Project Path="Source/RescuePC.Software.EntityFrameworkCore.MediatR/RescuePC.Software.EntityFrameworkCore.MediatR.csproj" />
+  </Folder>
+  <Folder Name="/Tests/" />
+</Solution>
