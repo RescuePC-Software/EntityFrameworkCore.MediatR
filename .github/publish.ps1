@@ -1,4 +1,4 @@
-$csproj = Join-Path $PSScriptRoot "..\Source\RescuePC.Software.EntityFrameworkCore.MediatR\RescuePC.Software.EntityFrameworkCore.MediatR.csproj"
+$csproj = Join-Path $PSScriptRoot "..\Source\RescuePC.Software.EntityFrameworkCore.Domain\RescuePC.Software.EntityFrameworkCore.Domain.csproj"
 $xml = [xml](Get-Content $csproj)
 $version = $xml.Project.PropertyGroup.Version
 
@@ -12,18 +12,19 @@ $tag = "v$version"
 
 $status = git status --porcelain
 if ($status) {
-	Write-Error "Są niezacommitowane zmiany. Zrób commit przed publikacją."
-	exit 1
+    Write-Error "Są niezacommitowane zmiany. Zrób commit przed publikacją."
+    exit 1
 }
 
 Write-Host "Wypychanie brancha..." -ForegroundColor Cyan
 git push origin
 if ($LASTEXITCODE -ne 0) {
-	Write-Error "Nie udało się wypchnąć brancha."
-	exit 1
+    Write-Error "Nie udało się wypchnąć brancha."
+    exit 1
 }
 
-Write-Host "Tworzenie taga $tag..." -ForegroundColor Cyan
+Write-Host "Tworzenie taga $tag (wersja z csproj: $version)..." -ForegroundColor Cyan
+
 git tag $tag
 if ($LASTEXITCODE -ne 0) {
 	Write-Error "Nie udało się utworzyć taga $tag."
@@ -36,4 +37,4 @@ if ($LASTEXITCODE -ne 0) {
 	exit 1
 }
 
-Write-Host "Tag $tag wypchnięty. GitHub Actions zbuduje i opublikuje paczkę NuGet." -ForegroundColor Green
+Write-Host "Tag $tag został wypchnięty. GitHub Actions opublikuje paczkę NuGet." -ForegroundColor Green
