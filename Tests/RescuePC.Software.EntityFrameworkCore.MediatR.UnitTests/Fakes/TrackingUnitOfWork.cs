@@ -1,5 +1,3 @@
-using RescuePC.Software.EntityFrameworkCore;
-
 namespace RescuePC.Software.EntityFrameworkCore.MediatR.UnitTests.Fakes;
 
 internal sealed class TrackingUnitOfWork : IUnitOfWork
